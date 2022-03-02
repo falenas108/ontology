@@ -7,7 +7,7 @@
   },
   "rules": {
     "react/self-closing-comp": [
-      "warn",
+      "error",
       {
         "component": true,
         "html": true
