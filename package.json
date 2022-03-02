@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "ui-dev": "cd ui && next dev",
-    "ui-vercel-build": "yarn tsc && yarn lint && yarn ui-build",
+    "ui-vercel-build": "yarn ui-build",
     "ui-build": "cd ui && next build",
     "ui-start": "cd ui && next start",
     "lint": "cd ui && next lint"
