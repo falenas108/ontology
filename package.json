@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "ui-dev": "cd ui && next dev",
+    "ui-build": "cd ui && next build",
+    "ui-start": "cd ui && next start",
     "lint": "next lint"
   },
   "dependencies": {
