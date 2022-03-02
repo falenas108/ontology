@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "ui-dev": "cd ui && next dev",
+    "ui-vercel-build": "yarn tsc && yarn lint && yarn ui-build",
     "ui-build": "cd ui && next build",
     "ui-start": "cd ui && next start",
-    "lint": "next lint"
+    "lint": "cd ui && next lint"
   },
   "dependencies": {
     "next": "12.1.0",
