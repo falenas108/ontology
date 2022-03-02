@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "ui-dev": "cd ui && next dev",
-    "ui-vercel-build": "yarn ui-build",
     "ui-build": "cd ui && next build",
     "ui-start": "cd ui && next start",
     "ui-start-test": "cd ui && next start -p 3001",
