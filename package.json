@@ -6,7 +6,10 @@
     "ui-dev": "cd ui && next dev",
     "ui-build": "cd ui && next build",
     "ui-start": "cd ui && next start",
-    "lint": "next lint"
+    "ui-start-test": "cd ui && next start -p 3001",
+    "ui-test-ci": "start-server-and-test ui-start-test http://localhost:3000 'cd ui && cypress run'",
+    "ui-test": "cd ui && cypress open",
+    "lint": "cd ui && next lint"
   },
   "dependencies": {
     "next": "12.1.0",
@@ -16,9 +19,11 @@
   "devDependencies": {
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
+    "cypress": "^9.5.1",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "eslint-config-prettier": "^8.4.0",
+    "start-server-and-test": "^1.14.0",
     "typescript": "4.6.2"
   }
 }
