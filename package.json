@@ -7,7 +7,8 @@
     "ui-build": "cd ui && next build",
     "ui-start": "cd ui && next start",
     "ui-start-test": "cd ui && next start -p 3001",
-    "ui-test": "start-server-and-test ui-start-test http://localhost:3001 'cd ui && cypress run'",
+    "ui-test-ci": "start-server-and-test ui-start-test http://localhost:3000 'cd ui && cypress run'",
+    "ui-test": "cd ui && cypress open",
     "lint": "cd ui && next lint"
   },
   "dependencies": {
