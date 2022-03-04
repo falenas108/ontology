@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next';
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import React, { useCallback, useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
@@ -10,13 +10,21 @@ export interface HomeProps {
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const layout = null; // getLayout();
-  let initialLayout;
+  let initialLayout = null;
   if (false) {
     // if (!hasExternalDependencies(layout)) {
     initialLayout = null; // fillLayout(layout, internalDependencies);
   }
   return {
     props: { initialLayout, layout },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // TODO: Get paths from repo structure
+  return {
+    paths: [],
+    fallback: true,
   };
 };
 
