@@ -1,6 +1,6 @@
-import { SparqlTable } from '../common/sparqlTable';
+import { SparqlResults } from '../common/sparqlTable';
 
-export const mockSparqlTable: SparqlTable = {
+export const mockSparqlTable: SparqlResults = {
   head: {
     vars: ['resource', 'name'],
     link: ['info'],
@@ -11,16 +11,6 @@ export const mockSparqlTable: SparqlTable = {
         resource: {
           type: 'uri',
           value: 'https://example.com/person/Jay',
-        },
-        name: {
-          type: 'literal',
-          value: 'Jay',
-        },
-      },
-      {
-        resource: {
-          type: 'uri',
-          value: 'https://example.com/person/Heather',
         },
         name: {
           type: 'literal',

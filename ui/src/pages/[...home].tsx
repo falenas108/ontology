@@ -1,23 +1,22 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import { useEffect, useState } from 'react';
+import { SparqlSource } from '../common/sparqlTable';
+import { RenderLayout } from '../components/renderLayout';
+import { fetchDefaultData } from '../services/defaultData';
 
 const Home: NextPage = () => {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Ontology</title>
-        <meta name="description" content="Ontology application" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+  const [data, setData] = useState<SparqlSource[]>([]);
 
-      <main className={styles.main}>
-        <h1>The Application</h1>
-      </main>
+  const fetchData = async () => {
+    const newData = await fetchDefaultData();
+    setData((oldData) => [...oldData, newData]);
+  };
 
-      <footer className={styles.footer} />
-    </div>
-  );
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return <RenderLayout layout={undefined} data={data} />;
 };
 
 export default Home;
