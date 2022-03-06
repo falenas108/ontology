@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import { SparqlSource } from '../common/sparqlTable';
+import { SparqlSimplified } from '../common/sparqlTable';
 import styles from '../styles/Home.module.css';
 
 export interface RenderLayoutProps {
   layout: unknown;
-  data: SparqlSource[];
+  data: SparqlSimplified | undefined;
 }
 
 export const RenderLayout = ({ data }: RenderLayoutProps) => {
@@ -18,7 +18,7 @@ export const RenderLayout = ({ data }: RenderLayoutProps) => {
 
       <main className={styles.main}>
         <h1>The Application</h1>
-        <p>Data! {data[0]?.['$o']}</p>
+        <p>Data! {data?.['o']}</p>
       </main>
 
       <footer className={styles.footer} />

@@ -1,10 +1,15 @@
-export interface SparqlSource extends SparqlResults {
-  [resultName: `$${string}`]:
-    | string
-    | undefined
-    | /** Will not be this, but below complains without */ string[];
-  [results: `$$${string}`]: string[] | undefined;
-}
+export type SparqlSimplified<variables extends string = string> = {
+  /** Gets the FIRST binding from the sparql result  */
+  [variable in variables]: string | boolean | undefined;
+} & {
+  /**  Gets all bindings from a specific variable in a sparql result */
+  $all: { [variable in variables]: string[] | undefined };
+} & {
+  // All bindings in the original format, but gives the value instead of object with type/value
+  $bindingValues: Array<{ [variable: string]: string | undefined }>;
+  /**  Full original sparql results */
+  $originalResults: SparqlResults;
+};
 
 export interface SparqlResults {
   head: {
@@ -12,15 +17,16 @@ export interface SparqlResults {
     link: string[];
   };
   results: {
-    bindings: [SparqlTableItem | undefined];
+    bindings: SparqlTableItem[];
   };
 }
 
 export interface SparqlTableItem {
-  [key: string]:
-    | {
-        type: string;
-        value: string;
-      }
-    | undefined;
+  [variable: string]: { type: BindingType; value: string } | undefined;
+}
+export enum BindingType {
+  BLANK_NODE = 'bnode',
+  BOOLEAN = 'boolean',
+  LITERAL = 'literal',
+  URI = 'uri',
 }

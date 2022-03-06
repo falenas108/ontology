@@ -1,4 +1,4 @@
-import { SparqlResults } from '../common/sparqlTable';
+import { BindingType, SparqlResults } from '../common/sparqlTable';
 
 export const mockSparqlTable: SparqlResults = {
   head: {
@@ -9,12 +9,22 @@ export const mockSparqlTable: SparqlResults = {
     bindings: [
       {
         resource: {
-          type: 'uri',
+          type: BindingType.URI,
+          value: 'https://example.com/person/Heather',
+        },
+        name: {
+          type: BindingType.LITERAL,
+          value: 'Heather',
+        },
+      },
+      {
+        resource: {
+          type: BindingType.URI,
           value: 'https://example.com/person/Jay',
         },
         name: {
-          type: 'literal',
-          value: 'Heather',
+          type: BindingType.LITERAL,
+          value: 'Jay',
         },
       },
     ],

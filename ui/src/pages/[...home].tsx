@@ -1,15 +1,15 @@
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
-import { SparqlSource } from '../common/sparqlTable';
+import { SparqlSimplified } from '../common/sparqlTable';
 import { RenderLayout } from '../components/renderLayout';
 import { fetchDefaultData } from '../services/defaultData';
 
 const Home: NextPage = () => {
-  const [data, setData] = useState<SparqlSource[]>([]);
+  const [data, setData] = useState<SparqlSimplified | undefined>();
 
   const fetchData = async () => {
     const newData = await fetchDefaultData();
-    setData((oldData) => [...oldData, newData]);
+    setData(newData);
   };
 
   useEffect(() => {

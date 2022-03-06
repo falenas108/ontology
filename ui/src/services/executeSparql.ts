@@ -1,7 +1,7 @@
-import { SparqlResults, SparqlSource } from '../common/sparqlTable';
+import { SparqlResults, SparqlSimplified } from '../common/sparqlTable';
 import { processSparql } from './processSparql';
 
-export const fetchSparql = async (url: string, query: string): Promise<SparqlSource> => {
+export const fetchSparql = async (url: string, query: string): Promise<SparqlSimplified> => {
   console.log('Making request with URL', url, 'with query:', query);
   const encodedQuery = encodeURIComponent(query);
   const urlWithQuery = `${url}?query=${encodedQuery}`;
