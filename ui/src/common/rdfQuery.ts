@@ -1,9 +1,11 @@
 export type RDFQuery = RDFResource[];
-export interface RDFResource {
+
+export type RDFResource = {
+  [predicate in string]: RDFPredicateValue[] | undefined;
+} & {
   '@id': string;
   '@type'?: string[];
-  [predicate: string]: RDFPredicateValue[] | string | string[] | undefined;
-}
+};
 
 export interface RDFPredicateValue {
   '@value'?: string;

@@ -1,23 +1,21 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import React from 'react';
+import { mockLayout } from '../__fixtures__/layout/testLayout';
+import { mockData } from '../__fixtures__/layout/testData';
+import createDOMPurify from 'isomorphic-dompurify';
 
-const Home: NextPage = () => {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Ontology</title>
-        <meta name="description" content="Ontology application" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+interface HomeProps {
+  layout: string;
+}
 
-      <main className={styles.main}>
-        <h1>The Application</h1>
-      </main>
+export async function getServerSideProps() {
+  const Handlebars = await import('handlebars');
+  const template = Handlebars.compile(mockLayout);
+  return { props: { layout: template(mockData) } };
+}
 
-      <footer className={styles.footer} />
-    </div>
-  );
+const Home: NextPage<HomeProps> = ({ layout }) => {
+  return <div dangerouslySetInnerHTML={{ __html: createDOMPurify.sanitize(layout) }} />;
 };
 
 export default Home;
