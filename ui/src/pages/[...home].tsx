@@ -1,22 +1,21 @@
 import type { NextPage } from 'next';
-import { useEffect, useState } from 'react';
-import { SparqlSimplified } from '../common/sparqlTable';
-import { RenderLayout } from '../components/renderLayout';
-import { fetchDefaultData } from '../services/defaultData';
+import React from 'react';
+import { mockLayout } from '../__fixtures__/layout/testLayout';
+import { mockData } from '../__fixtures__/layout/testData';
+import createDOMPurify from 'isomorphic-dompurify';
 
-const Home: NextPage = () => {
-  const [data, setData] = useState<SparqlSimplified | undefined>();
+interface HomeProps {
+  layout: string;
+}
 
-  const fetchData = async () => {
-    const newData = await fetchDefaultData();
-    setData(newData);
-  };
+export async function getServerSideProps() {
+  const Handlebars = await import('handlebars');
+  const template = Handlebars.compile(mockLayout);
+  return { props: { layout: template(mockData) } };
+}
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  return <RenderLayout layout={undefined} data={data} />;
+const Home: NextPage<HomeProps> = ({ layout }) => {
+  return <div dangerouslySetInnerHTML={{ __html: createDOMPurify.sanitize(layout) }} />;
 };
 
 export default Home;
