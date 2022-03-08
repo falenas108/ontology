@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    runtime: 'edge',
+    runtime: 'nodejs',
     serverComponents: true,
   },
   redirects: async () => {
