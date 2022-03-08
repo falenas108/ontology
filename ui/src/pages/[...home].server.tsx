@@ -31,6 +31,7 @@ const Home: NextPage<HomeProps> = ({ layout }) => {
 
   const mapNodeToCreateElement = (node: Node): React.ReactNode => {
     const type = nodeTypeToJSX(node.nodeName);
+
     if (type === '#text') {
       return node.nodeValue;
     }
