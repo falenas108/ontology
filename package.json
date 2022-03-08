@@ -10,7 +10,7 @@
     "ui-start-test": "cd ui && next start -p 3001",
     "ui-test-ci": "start-server-and-test ui-start-test http://localhost:3000 'cd ui && cypress run'",
     "ui-test": "cd ui && cypress open",
-    "vercel-build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/ && yarn ui-build"
+    "vercel-build": "yarn ui-build"
   },
   "dependencies": {
     "canvas": "2.6.1",
