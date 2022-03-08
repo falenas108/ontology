@@ -13,7 +13,7 @@
     "vercel-build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/ && yarn ui-build"
   },
   "dependencies": {
-    "canvas": "^2.9.0",
+    "canvas": "2.6.1",
     "handlebars": "^4.7.7",
     "jsdom": "^19.0.0",
     "lodash": "^4.17.21",
