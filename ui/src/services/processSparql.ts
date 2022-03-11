@@ -1,5 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep';
-import { SparqlResults, SparqlSimplified } from '../common/sparqlTable';
+import { SparqlResults, SparqlSimplified } from '../../../common/';
 
 export const processSparql = (rawSparql: SparqlResults): SparqlSimplified => {
   const copy: SparqlResults = cloneDeep(rawSparql) as SparqlResults;

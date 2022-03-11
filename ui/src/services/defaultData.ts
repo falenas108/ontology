@@ -1,4 +1,4 @@
-import { SparqlSimplified } from '../common/sparqlTable';
+import { SparqlSimplified } from '../../../common/';
 import { fetchSparql } from './executeSparql';
 
 export const fetchDefaultData = async (): Promise<SparqlSimplified> => {
