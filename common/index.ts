@@ -6,4 +6,3 @@ export * from './services/executeSparql';
 export * from './services/fetchAll';
 export * from './services/processSparql';
 export * from './services/serviceCache';
-export * from './services/useData';

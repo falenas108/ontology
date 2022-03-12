@@ -1,4 +1,4 @@
-import { ServiceCache } from './serviceCache';
+import { ServiceCache } from '../../../common/services/serviceCache';
 
 const cache = new ServiceCache();
 
