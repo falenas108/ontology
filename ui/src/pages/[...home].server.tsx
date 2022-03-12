@@ -11,12 +11,7 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ router }) => {
   const filledLayout = layoutToJsx(routeToLayout(getRoute(router.query)));
-  return (
-    <>
-      {filledLayout}
-      {/* <Image height={'20'} width="10" src={'/images/cozyBlanket.png'} /> */}
-    </>
-  );
+  return <>{filledLayout}</>;
 };
 
 export default Home;
