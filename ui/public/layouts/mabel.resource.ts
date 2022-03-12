@@ -40,7 +40,7 @@ const mabelSparql: SparqlResults = {
         },
         friends: {
           type: BindingType.LITERAL,
-          value: null,
+          value: 'Candy',
         },
       },
     ],
