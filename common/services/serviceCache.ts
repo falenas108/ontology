@@ -11,7 +11,7 @@ export class ServiceCache {
    * @param value item to store
    * @param ttl time to live, in ms. Defaults to 1 hour.
    */
-  public addItem = (key: string, value: unknown, ttl: number = 360000) => {
+  public addItem = (key: string, value: unknown, ttl: number = 5 * 60 * 1000) => {
     const oldIndex = this.keyQueue.indexOf(key);
     if (oldIndex !== -1) {
       // If key already present, remove it because it'll be added at the front of the queue

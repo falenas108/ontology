@@ -1,4 +1,4 @@
-import { ServiceCache } from '../serviceCache';
+import { ServiceCache } from '../services/serviceCache';
 
 class Cut extends ServiceCache {
   public keyQueue: string[] = [];

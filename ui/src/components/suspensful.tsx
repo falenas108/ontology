@@ -1,4 +1,4 @@
-import { useData } from '../../../common/useData';
+import { useData } from '../../../common';
 
 export const Suspensful = (): JSX.Element => {
   const data = useData<string>(

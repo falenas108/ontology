@@ -1,4 +1,4 @@
-import { BindingType, SparqlResults } from '../../../common/';
+import { BindingType, SparqlResults } from '../..';
 
 export const mockSparqlTable: SparqlResults = {
   head: {

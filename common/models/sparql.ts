@@ -1,3 +1,5 @@
+import { BindingType } from './bindingType';
+
 export type SparqlSimplified<variables extends string = string> = {
   /** Gets the FIRST binding from the sparql result  */
   [variable in variables]: string | boolean | undefined;
@@ -22,11 +24,5 @@ export interface SparqlResults {
 }
 
 export interface SparqlTableItem {
-  [variable: string]: { type: BindingType; value: string } | undefined;
-}
-export enum BindingType {
-  BLANK_NODE = 'bnode',
-  BOOLEAN = 'boolean',
-  LITERAL = 'literal',
-  URI = 'uri',
+  [variable: string]: { type: BindingType; value: string | null } | undefined;
 }
