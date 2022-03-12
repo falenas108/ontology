@@ -1,4 +1,4 @@
-import { SparqlResults, SparqlSimplified } from '../common/sparqlTable';
+import { SparqlResults, SparqlSimplified } from '..';
 import { processSparql } from './processSparql';
 
 export const fetchSparql = async (url: string, query: string): Promise<SparqlSimplified> => {
