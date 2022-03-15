@@ -16,12 +16,8 @@ type Children = React.PropsWithChildren<unknown>;
 export const layoutToJsx = ({ layout, resources }: HandlebarsToJsxProps) => {
   const template = Handlebars.compile(layout);
 
-  const parser = new JSDOM(template(resources));
-  const root = parser.window.document.body;
-  const walker = parser.window.document.createTreeWalker(root);
-  walker.nextNode(); // Starts at body, we want to start at the tag after that
-
-  return mapNodeToCreateElement(walker.currentNode);
+  const parser = JSDOM.fragment(`<div>${template(resources)}</div>`);
+  return mapNodeToCreateElement(parser.firstChild!);
 };
 
 const mapNodeToCreateElement = (node: Node): React.ReactNode => {
