@@ -34,30 +34,34 @@ const mapNodeToCreateElement = (node: Node): React.ReactNode => {
 
 const nodeTypeToJSX = (node: Node) => {
   const lowered = node.nodeName.toLowerCase();
-  switch (lowered) {
-    case 'div':
-      return 'div';
-    case 'reactbutton':
-      return (props: Children): JSX.Element => {
-        return <Link {...getAllAttributes(node)} {...props} />;
-      };
+  const reactNode = getReactNode(lowered);
+  if (reactNode === '#text') {
+    return reactNode;
+  }
+  return (props: Children): JSX.Element => {
+    return React.createElement(reactNode, { ...getAllAttributes(node), ...props });
+  };
+};
+
+const getReactNode = (nodeName: string): string | ((props: any) => JSX.Element) => {
+  switch (nodeName) {
+    case 'reactlink':
+      return Link;
     case 'reactimage':
-      return (props: Children): JSX.Element => {
-        // The Image component internally assures that alt text is present, cannot render image without it
-        // eslint-disable-next-line jsx-a11y/alt-text
-        return <Image {...getAllAttributes(node)} {...props} />;
-      };
+      return Image;
     default:
-      return lowered;
+      return nodeName;
   }
 };
 
 const getAllAttributes = (node: Node): Record<string, unknown> => {
-  const element = node as Element;
-  return element
-    .getAttributeNames()
-    .reduce(
-      (acc, attributeName) => ({ ...acc, [attributeName]: element.getAttribute(attributeName) }),
-      {}
-    );
+  const element = node as Element & Node;
+  return element?.getAttributeNames?.()?.reduce((acc, attributeName) => {
+    const attributeKey = attributeName === 'style' ? 'STYLE' : attributeName;
+
+    return {
+      ...acc,
+      [attributeKey]: element.getAttribute(attributeName),
+    };
+  }, {});
 };
