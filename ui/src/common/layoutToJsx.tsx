@@ -1,7 +1,8 @@
+/* eslint-disable react/display-name */
 import { JSDOM } from 'jsdom';
 import { AvailableResources } from '../../../common';
-import { Link } from '../components';
-import Image from 'next/image';
+import { Link } from '../components/link';
+import { Image } from '../components/image';
 import React from 'react';
 import Handlebars from 'handlebars';
 
@@ -9,6 +10,8 @@ export interface HandlebarsToJsxProps {
   layout: string;
   resources: AvailableResources;
 }
+
+type Children = React.PropsWithChildren<unknown>;
 
 export const layoutToJsx = ({ layout, resources }: HandlebarsToJsxProps) => {
   const template = Handlebars.compile(layout);
@@ -39,19 +42,26 @@ const nodeTypeToJSX = (node: Node) => {
     case 'div':
       return 'div';
     case 'reactbutton':
-      return Link;
+      return (props: Children): JSX.Element => {
+        return <Link {...getAllAttributes(node)} {...props} />;
+      };
     case 'reactimage':
-      const source = (node as Element).getAttribute('src');
-      console.log('source', source);
-      if (source) {
-        return function image() {
-          return <Image alt="blanket" width={200} height={200} src={source} />;
-        };
-      } else {
-        console.warn('Must define src inside image tag');
-        return 'div';
-      }
+      return (props: Children): JSX.Element => {
+        // The Image component internally assures that alt text is present, cannot render image without it
+        // eslint-disable-next-line jsx-a11y/alt-text
+        return <Image {...getAllAttributes(node)} {...props} />;
+      };
     default:
       return lowered;
   }
+};
+
+const getAllAttributes = (node: Node): Record<string, unknown> => {
+  const element = node as Element;
+  return element
+    .getAttributeNames()
+    .reduce(
+      (acc, attributeName) => ({ ...acc, [attributeName]: element.getAttribute(attributeName) }),
+      {}
+    );
 };

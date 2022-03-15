@@ -3,8 +3,8 @@ const layout = `
       <div style="color:blue">mabel</div>
       <div>pines</div>
       <div><div>Test!</div></div>
-      <ReactButton>Press!</ReactButton>
-      <ReactImage src="/images/cozyBlanket.png" />
+      <ReactButton href="/dipper" >Press!</ReactButton>
+      <ReactImage alt="warm blanket" height="100" width="100" src="/images/cozyBlanket.png" />
       Test2!
     </div>`;
 
