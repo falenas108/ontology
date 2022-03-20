@@ -1,7 +1,11 @@
 import cloneDeep from 'lodash/cloneDeep';
 import { SparqlResults, SparqlSimplified } from '..';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
-export const processSparql = (rawSparql: SparqlResults): SparqlSimplified => {
+export const processSparql = (inputSparql?: SparqlResults): SparqlSimplified => {
+  const argv = yargs(hideBin(process.argv)).argv;
+  const rawSparql = inputSparql ?? JSON.parse(argv[0] as string);
   const copy: SparqlResults = cloneDeep(rawSparql) as SparqlResults;
   const simplified: SparqlSimplified = {
     $all: {},
