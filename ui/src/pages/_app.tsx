@@ -1,7 +1,11 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import Image from 'next/image';
-Image.name; // Needed so image is in the scope of the app, it isn't recognizing it deeply otherwise
+import Link from 'next/link';
+
+// Needed so these are in the scope of the app, it thinks they're unused otherwise
+Image.name;
+Link.name;
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
