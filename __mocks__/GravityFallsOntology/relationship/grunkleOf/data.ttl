@@ -1,0 +1,8 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<>
+  a rdfs:Property ;
+  rdfs:label "grunkle of" ;
+  rdfs:description "Relates a person to another person who they are the great uncle of." ;
+  rdfs:subPropertyOf foaf:knows ;
+.

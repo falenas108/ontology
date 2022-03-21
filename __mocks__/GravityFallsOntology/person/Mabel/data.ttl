@@ -1,0 +1,16 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix relationship: <http://www.perceive.net/schemas/20021119/relationship/> .
+
+<>
+  a foaf:Person ;
+  foaf:age 13 ;
+  foaf:givenName "Mabel" ;
+  foaf:familyName "Pines" ;
+  foaf:name "Mabel" ;
+  foaf:img <Mabel.webp> ;
+  dcterms:description "Mabel Pines (born August 31, 5 minutes before [Dipper Pines](Dipper)) is a 13-year-old girl (12 prior to the events of the finale) spending the summer with her [Great Uncle Stan](Grunkle_Stan) in Gravity Falls, Oregon, where she and her brother frequently encounter the supernatural. She is also the deuteragonist of the series. She takes a much less serious approach to life than her twin brother, as she navigates her way around odd, new surroundings. Mabel is represented by the Shooting Star in the Zodiac." ;
+  relationship:siblingOf <Dipper> ;
+  relationship:friendOf <Grenda> ;
+  relationship:friendOf <Candy>
+.

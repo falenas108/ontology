@@ -1,0 +1,15 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix relationship: <http://www.perceive.net/schemas/20021119/relationship/> .
+
+<>
+  a foaf:Person ;
+  foaf:age 62 ;
+  foaf:givenName "Stanley" ;
+  foaf:familyName "Pines" ;
+  foaf:img <Grunkle_Stan.webp> ;
+  dcterms:description """Stanley "Stan" Pines (born June 15, 15 minutes after his twin brother, Ford Pines), also known as Grunkle Stan, and formerly under the assumed identity Stanford Pines, is [Dipper](Dipper) and [Mabel](Mabel) Pines' great uncle and summer guardian and a paternal uncle of Mr. Pines. He is also the tritagonist of the series. After many years of crime and infamy, he has taken up residence in the remote town of Gravity Falls, Oregon, where he exploits local lore and the gullibility of the "dumbest people in the world" to finance himself by running a dubious tourist trap known as the Mystery Shack. Despite his initial claims of skepticism to the supernatural, he is later revealed to be deeply connected with the paranormal and about the town's weird paranormal status, most notably the decades-long operation of an interdimensional portal he used to rescue his twin brother, Ford Pines. Stanley is represented on the Zodiac wheel as the crescent symbol present on his fez.""" ;
+  foaf:name "Grunkle Stan" ;
+  </GravityFalls/relationship/grunkleOf> <Dipper> ;
+  </GravityFalls/relationship/grunkleOf> <Mabel>
+.

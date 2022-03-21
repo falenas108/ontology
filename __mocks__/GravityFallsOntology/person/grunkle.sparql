@@ -1,0 +1,12 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+# input $resource: the person to list the relationships of
+SELECT $person $name
+WHERE {
+  GRAPH $resource {
+    $resource </GravityFalls/relationship/grunkleOf> $person
+  }
+  GRAPH $person {
+    $person foaf:name $name
+  }
+}
