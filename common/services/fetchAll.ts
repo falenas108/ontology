@@ -1,5 +1,5 @@
 import { SparqlSimplified } from '..';
-import { fetchSparql } from './executeSparql';
+import { fetchSparql } from './fetchSparql';
 
 export const fetchAll = async (): Promise<SparqlSimplified> => {
   return fetchSparql(

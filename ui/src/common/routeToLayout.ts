@@ -1,9 +1,11 @@
 import { AvailableResources } from '../../../common';
 import { mabelResources } from '../../public/layouts/mabel.resource';
+import { dipperResources } from '../../public/layouts/dipper.resource';
 
 export const routeToLayout = (path: string): { resources: AvailableResources; layout: string } => {
   // TODO: Replace with proper data from build
   const mockData: Record<string, AvailableResources | undefined> = {
+    dipper: dipperResources,
     mabel: mabelResources,
   };
 

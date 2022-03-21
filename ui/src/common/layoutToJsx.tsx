@@ -1,7 +1,8 @@
+/* eslint-disable react/display-name */
 import { JSDOM } from 'jsdom';
 import { AvailableResources } from '../../../common';
-import { Link } from '../components';
-import Image from 'next/image';
+import { Link } from '../components/link';
+import { Image } from '../components/image';
 import React from 'react';
 import Handlebars from 'handlebars';
 
@@ -10,15 +11,13 @@ export interface HandlebarsToJsxProps {
   resources: AvailableResources;
 }
 
+type Children = React.PropsWithChildren<unknown>;
+
 export const layoutToJsx = ({ layout, resources }: HandlebarsToJsxProps) => {
   const template = Handlebars.compile(layout);
 
-  const parser = new JSDOM(template(resources));
-  const root = parser.window.document.body;
-  const walker = parser.window.document.createTreeWalker(root);
-  walker.nextNode(); // Starts at body, we want to start at the tag after that
-
-  return mapNodeToCreateElement(walker.currentNode);
+  const parser = JSDOM.fragment(`<div>${template(resources)}</div>`);
+  return mapNodeToCreateElement(parser.firstChild!);
 };
 
 const mapNodeToCreateElement = (node: Node): React.ReactNode => {
@@ -35,23 +34,34 @@ const mapNodeToCreateElement = (node: Node): React.ReactNode => {
 
 const nodeTypeToJSX = (node: Node) => {
   const lowered = node.nodeName.toLowerCase();
-  switch (lowered) {
-    case 'div':
-      return 'div';
-    case 'reactbutton':
+  const reactNode = getReactNode(lowered);
+  if (reactNode === '#text') {
+    return reactNode;
+  }
+  return (props: Children): JSX.Element => {
+    return React.createElement(reactNode, { ...getAllAttributes(node), ...props });
+  };
+};
+
+const getReactNode = (nodeName: string): string | ((props: any) => JSX.Element) => {
+  switch (nodeName) {
+    case 'reactlink':
       return Link;
     case 'reactimage':
-      const source = (node as Element).getAttribute('src');
-      console.log('source', source);
-      if (source) {
-        return function image() {
-          return <Image alt="blanket" width={200} height={200} src={source} />;
-        };
-      } else {
-        console.warn('Must define src inside image tag');
-        return 'div';
-      }
+      return Image;
     default:
-      return lowered;
+      return nodeName;
   }
+};
+
+const getAllAttributes = (node: Node): Record<string, unknown> => {
+  const element = node as Element & Node;
+  return element?.getAttributeNames?.()?.reduce((acc, attributeName) => {
+    const attributeKey = attributeName === 'style' ? 'STYLE' : attributeName;
+
+    return {
+      ...acc,
+      [attributeKey]: element.getAttribute(attributeName),
+    };
+  }, {});
 };

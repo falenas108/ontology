@@ -1,11 +1,19 @@
 import cloneDeep from 'lodash/cloneDeep';
 import { SparqlResults, SparqlSimplified } from '..';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
-export const processSparql = (rawSparql: SparqlResults): SparqlSimplified => {
+export const processSparql = (inputSparql?: SparqlResults): SparqlSimplified => {
+  const argv = yargs(hideBin(process.argv)).argv;
+  const rawSparql = inputSparql ?? JSON.parse(argv[0] as string);
   const copy: SparqlResults = cloneDeep(rawSparql) as SparqlResults;
   const simplified: SparqlSimplified = {
     $all: {},
-    $bindingValues: Array(copy.results.bindings.length).fill({}),
+    // Would normally just .fill({}), but that assigns the exact same object reference to each element
+    // So modifying one modifies them all
+    $bindingValues: Array(copy.results.bindings.length)
+      .fill(0)
+      .map(() => ({})),
     $originalResults: copy,
   } as SparqlSimplified;
 
