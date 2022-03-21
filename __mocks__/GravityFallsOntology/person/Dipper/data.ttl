@@ -1,0 +1,14 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix relationship: <http://www.perceive.net/schemas/20021119/relationship/> .
+
+<>
+  a foaf:Person ;
+  foaf:age 13 ;
+  foaf:givenName "Dipper" ;
+  foaf:familyName "Pines" ;
+  foaf:name "Dipper" ;
+  foaf:img <Dipper.webp> ;
+  dcterms:description """Mason "Dipper" Pines (born August 31, 5 minutes after [Mabel Pines](Mabel)) is a smart, curious, and adventurous 13-year-old boy (12 prior to the events of the finale) spending the summer with his [Great Uncle Stan](Grunkle_Stan) in Gravity Falls, Oregon, where he and his sister constantly encounter the town's paranormal tendencies. Armed with journal 3 that he found in a hidden place in a tree in the forest, he is the overall main protagonist of Gravity Falls and he seeks to uncover the town's mysterious secrets. Dipper represents the pine tree in the Zodiac.""" ;
+  relationship:siblingOf <Mabel>
+.

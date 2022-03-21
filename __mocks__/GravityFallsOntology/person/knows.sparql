@@ -1,0 +1,11 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+# input $resource: the person to list the relationships of
+SELECT $person {
+  GRAPH $resource {
+    $resource foaf:knows $person
+  }
+  GRAPH $person {
+    $person foaf:name $name
+  }
+}

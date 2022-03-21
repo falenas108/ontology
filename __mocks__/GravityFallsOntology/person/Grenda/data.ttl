@@ -1,0 +1,15 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix relationship: <http://www.perceive.net/schemas/20021119/relationship/> .
+
+<>
+  a foaf:Person ;
+  foaf:age 11 ;
+  foaf:givenName "Grenda" ;
+  foaf:familyName "Grendinator" ;
+  foaf:name "Grenda" ;
+  foaf:img <Grenda.webp> ;
+  dcterms:description "Grenda Grendinator is [Mabel Pines](Mabel)' and [Candy Chiu](Candy)'s best friend, notable for her large physique, obsession with boys, great physical strength, and a deep, gruff, and masculine voice." ;
+  relationship:friendOf <Candy> ;
+  relationship:friendOf <Mabel>
+.

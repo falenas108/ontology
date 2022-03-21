@@ -1,0 +1,28 @@
+<h1>{{ person.name }}</h1>
+<p>{{> markdown person.description }}</p>
+
+<h2>Relationships</h2>
+
+{{# if (any friends.$all knows.$all) }}
+  <h3>Personal</h3>
+  <ul>
+    {{# each friends.$all }}
+      <li>Friends with <a href="{{ person }}">{{ name }}</a></li>
+    {{/ each }}
+  {{# each knows.$all }}
+    <li>Knows <a href="{{ person }}">{{ name }}</a></li>
+  {{/ each }}
+  </ul>
+{{/ if }}
+
+{{# if (any siblings.$all grunkleOf.$all) }}
+  <h3>Family</h3>
+  <ul>
+    {{# each siblings.$all }}
+      <li>Sibling of <a href="{{ person }}">{{ name }}</a></li>
+    {{/ each }}
+    {{ each grunkleOf.$all }}
+      <li>Is grunkle of <a href="{{ person }}">{{ name }}</a></li>
+    {{/ each }}
+  </ul>
+{{/ if }}

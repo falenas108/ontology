@@ -1,0 +1,13 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX relationship: <http://www.perceive.net/schemas/20021119/relationship/>
+
+# input $resource: the person to list the relationships of
+SELECT $person $name
+WHERE {
+  GRAPH $resource {
+    $resource relationship:siblingOf $person
+  }
+  GRAPH $person {
+    $person foaf:name $name
+  }
+}
