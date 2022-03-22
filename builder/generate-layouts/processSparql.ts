@@ -1,11 +1,10 @@
-import cloneDeep from 'lodash/cloneDeep';
-import { SparqlResults, SparqlSimplified } from '..';
-import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
+import cloneDeep from 'lodash/cloneDeep.js';
+import { SparqlResults, SparqlSimplified } from './sparql.js';
 
-export const processSparql = (inputSparql?: SparqlResults): SparqlSimplified => {
-  const argv = yargs(hideBin(process.argv)).argv;
-  const rawSparql = inputSparql ?? JSON.parse(argv[0] as string);
+export const processSparql = (
+  inputSparql?: SparqlResults
+): SparqlSimplified => {
+  const rawSparql = inputSparql;
   const copy: SparqlResults = cloneDeep(rawSparql) as SparqlResults;
   const simplified: SparqlSimplified = {
     $all: {},
@@ -29,7 +28,10 @@ export const processSparql = (inputSparql?: SparqlResults): SparqlSimplified => 
           simplified.$all[variable] = [result.value];
         } else {
           // Have seen before, do not fill default value but add to array
-          simplified.$all[variable] = [...simplified.$all[variable]!, result.value];
+          simplified.$all[variable] = [
+            ...simplified.$all[variable]!,
+            result.value,
+          ];
         }
       }
     });

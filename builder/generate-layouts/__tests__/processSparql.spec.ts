@@ -1,5 +1,5 @@
-import { BindingType } from '../../models/bindingType';
-import { SparqlResults } from '../../models/sparql';
+import { BindingType } from '../../../common/models/bindingType';
+import { SparqlResults } from '../sparql';
 import { processSparql } from '../processSparql';
 
 describe('process sparql', () => {
@@ -58,7 +58,12 @@ describe('process sparql', () => {
       friends: ['Grenda', 'Candy'],
     },
     $bindingValues: [
-      { firstName: 'Mabel', lastName: 'Pines', brother: 'Dipper', friends: 'Grenda' },
+      {
+        firstName: 'Mabel',
+        lastName: 'Pines',
+        brother: 'Dipper',
+        friends: 'Grenda',
+      },
       { friends: 'Candy' },
     ],
     $originalResults: {

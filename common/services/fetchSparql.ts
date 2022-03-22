@@ -1,12 +1,17 @@
 import { SparqlResults, SparqlSimplified } from '..';
-import { processSparql } from './processSparql';
+import { processSparql } from '../../builder/generate-layouts/processSparql';
 
-export const fetchSparql = async (url: string, query: string): Promise<SparqlSimplified> => {
+export const fetchSparql = async (
+  url: string,
+  query: string
+): Promise<SparqlSimplified> => {
   console.log('Making request with URL', url, 'with query:', query);
   const encodedQuery = encodeURIComponent(query);
   const urlWithQuery = `${url}?query=${encodedQuery}`;
 
-  const rawResponse = await fetch(urlWithQuery, { headers: { accept: 'application/json' } });
+  const rawResponse = await fetch(urlWithQuery, {
+    headers: { accept: 'application/json' },
+  });
 
   const response: SparqlResults = await rawResponse.json();
   console.log('Got response', response);

@@ -1,4 +1,4 @@
-import { BindingType } from './bindingType';
+import { BindingType } from '../../common/models/bindingType';
 
 export type SparqlSimplified<variables extends string = string> = {
   /** Gets the FIRST binding from the sparql result  */
