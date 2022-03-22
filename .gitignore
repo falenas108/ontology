@@ -23,3 +23,10 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# IntelliJ IDEA
+/builder/resource-init/.idea
+/builder/resource-init/out
+/builder/resource-init/target
+/builder/resource-init/*.iml
+/builder/resource-init/ontology.properties
